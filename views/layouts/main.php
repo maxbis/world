@@ -36,26 +36,21 @@ AppAsset::register($this);
         ],
     ]);
     echo Nav::widget([
-        'options' => ['class' => 'navbar-nav navbar-right'],
-        'items' => [
-            ['label' => 'Home', 'url' => ['/site/index']],
-            ['label' => 'About', 'url' => ['/site/about']],
-            ['label' => 'Contact', 'url' => ['/site/contact']],
-            Yii::$app->user->isGuest ? (
-                ['label' => 'Login', 'url' => ['/site/login']]
-            ) : (
-                '<li>'
-                . Html::beginForm(['/site/logout'], 'post')
-                . Html::submitButton(
-                    'Logout (' . Yii::$app->user->identity->username . ')',
-                    ['class' => 'btn btn-link logout']
-                )
-                . Html::endForm()
-                . '</li>'
-            )
-        ],
-    ]);
-    NavBar::end();
+      
+        // hier worden de menu's en menu items bepaald
+          'options' => ['class' => 'navbar-nav navbar-right'],
+          'items' => [
+              [ 'label' => 'Country',
+                  'items' => [
+                      ['label' => 'Overzicht', 'url' => ['/country/index', ''] ],
+                      ['label' => 'Voeg toe', 'url' => ['/country/create', ''] ],
+                      ['label' => 'Europa', 'url' => ['/country/index', 'countrySearch[Continent]'=>'Europe'] ],
+                  ],
+              ],
+          ],
+      ]);
+                    
+     NavBar::end();
     ?>
 
     <div class="container">
